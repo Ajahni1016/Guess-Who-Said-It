@@ -6,6 +6,7 @@ import random
 import json
 #Created
 from src import TextInput
+from src import Person
 
 class Controller:
     def __init__(self, width=1080, height=720):
@@ -30,8 +31,12 @@ class Controller:
                 self.gameLoop()
             if(self.state == "INSERT"):
                 self.insertLoop()
-            if(self.state == "TEXT"):
-                self.textLoop()
+            if(self.state == "TEXTN"):
+                self.text_nLoop()
+            if(self.state == "TEXTY"):
+                self.text_yLoop()
+            if(self.state == "TEXTQ"):
+                self.text_qLoop()
 
     def menuLoop(self):
         """This is the Menu Loop of the Game"""
@@ -85,15 +90,16 @@ class Controller:
             pygame.display.flip()
             
     def gameLoop(self):
-        """This is the List Loop of the Game"""
+        """This is the Game Loop of the Game"""
         while self.state == "GAME":
             #BACKGROUND
-            self.screen.fill((0,0,0))
-            #BUTTONS
-            #SCREEN WORDS
-            myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("GAME", True, (245,231,20))
-            self.screen.blit(text, (439, 300))
+            #choices = ['assets/dummy.png', 'assets/plaid.png']
+            #img_file = random.choice(choices)
+            #self.image = pygame.transform.smoothscale(pygame.image.load(img_file).convert_alpha(), (65,65))
+            self.gameBG = pygame.transform.smoothscale(pygame.image.load('assets/GamePage2.png').convert_alpha(), (self.width,self.height))
+            self.screen.blit(self.gameBG, (0, 0))
+            #BUTTONS -> JUST FOR TESTING
+            #pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(99, 34, 80, 59), 3)
             #MOUSE           
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
@@ -103,23 +109,20 @@ class Controller:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     temp=pygame.mouse.get_pos()
                     print(temp)
-                    if((temp[0]>=450 and temp[0]<=550) and (temp[1]>=500 and temp[1]<=600)):
+                    if((temp[0]>=99 and temp[0]<=179) and (temp[1]>=34 and temp[1]<=93)):
                         self.state = "MENU"
                         self.mainLoop()
             pygame.display.flip()
 
     def insertLoop(self):
-        """This is the List Loop of the Game"""    
+        """This is the Insert Loop of the Game""" 
+        #CREATED A PERSON OBJECT
+        self.person = Person.Person()
+        
         while self.state == "INSERT":
             #BACKGROUND
-            self.screen.fill((0,0,0))
-            #BUTTONS
-            pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(450, 500, 100, 100), 3)
-            pygame.draw.rect(self.screen, (0, 255, 0), pygame.Rect(118, 318, 110, 91), 3)
-            #SCREEN WORDS
-            myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("INSERT", True, (245,231,20))
-            self.screen.blit(text, (439, 300))
+            self.insertBG = pygame.transform.smoothscale(pygame.image.load('assets/Insert.png').convert_alpha(), (self.width,self.height))
+            self.screen.blit(self.insertBG, (0, 0))
             #MOUSE           
             pygame.mouse.set_visible(True)
             events = pygame.event.get()
@@ -130,39 +133,46 @@ class Controller:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     temp=pygame.mouse.get_pos()
                     print(temp)
-                    if((temp[0]>=450 and temp[0]<=550) and (temp[1]>=500 and temp[1]<=600)):
+                    if((temp[0]>=249 and temp[0]<=288) and (temp[1]>=603 and temp[1]<=649)):
                         self.state = "MENU"
                         self.mainLoop()
-                    if((temp[0]>=118 and temp[0]<=228) and (temp[1]>=318 and temp[1]<=409)):
-                        self.state = "TEXT"
+                    if((temp[0]>=98 and temp[0]<=285) and (temp[1]>=293 and temp[1]<=345)):
+                        self.state = "TEXTN"
+                        self.mainLoop()
+                    if((temp[0]>=12 and temp[0]<=201) and (temp[1]>=456 and temp[1]<=508)):
+                        self.state = "TEXTY"
+                        self.mainLoop()
+                    if((temp[0]>=339 and temp[0]<=1044) and (temp[1]>=132 and temp[1]<=617)):
+                        self.state = "TEXTQ"
                         self.mainLoop()
             pygame.display.flip()
             
-    def textLoop(self):
+    def text_nLoop(self):
         """This is the Text Loop of the Game"""
         clock = pygame.time.Clock()
         textinput = TextInput.TextInput()      
-        while self.state == "TEXT":
+        while self.state == "TEXTN":
             #BACKGROUND
             self.screen.fill((255,255,255))
             #SCREEN WORDS
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("TEXT", True, (0,0,0))
+            text = myfont.render("TEXTN", True, (0,0,0))
             self.screen.blit(text, (439, 300))
-            #MOUSE           
+            #MOUSE
             pygame.mouse.set_visible(True)
             events = pygame.event.get()
             for event in events:
                 if event.type == pygame.QUIT:
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if(event.key == pygame.K_RETURN):
+                        fo = open("quotes.json","w")
+                        fo.write(textinput.get_text())
+                        fo.close()
+                        self.state = "INSERT"
+                        self.mainLoop()
             #print(events)
             textinput.update(events)
             self.screen.blit(textinput.get_surface(), (10, 10))
-            
-            #HERE
-            if textinput.update(events):
-                print(textinput.get_text())
-
             pygame.display.flip()
             clock.tick(30)
-    
