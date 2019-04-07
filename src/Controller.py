@@ -67,8 +67,8 @@ class Controller:
     def listLoop(self):
         """This is the List Loop of the Game"""
         while self.state == "LIST":
-            #BACKGROUND
-            self.screen.fill((0,0,0))
+            self.listBG = pygame.transform.smoothscale(pygame.image.load('assets/QuotesBlank.png').convert_alpha(), (self.width,self.height))
+            self.screen.blit(self.listBG, (0, 0))
             #BUTTONS
             pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(450, 500, 100, 100), 3)
             #SCREEN WORDS
@@ -91,13 +91,12 @@ class Controller:
             
     def gameLoop(self):
         """This is the Game Loop of the Game"""
+        #BACKGROUND
+        choices = ['assets/Questions1.png', 'assets/Questions2.png','assets/Questions3.png', 'assets/Questions4.png','assets/Questions5.png', 'assets/Questions6.png']
+        img_file = random.choice(choices)
+        self.gameBG = pygame.transform.smoothscale(pygame.image.load(img_file).convert_alpha(), (self.width,self.height))
+        self.screen.blit(self.gameBG, (0, 0))
         while self.state == "GAME":
-            #BACKGROUND
-            #choices = ['assets/dummy.png', 'assets/plaid.png']
-            #img_file = random.choice(choices)
-            #self.image = pygame.transform.smoothscale(pygame.image.load(img_file).convert_alpha(), (65,65))
-            self.gameBG = pygame.transform.smoothscale(pygame.image.load('assets/GamePage2.png').convert_alpha(), (self.width,self.height))
-            self.screen.blit(self.gameBG, (0, 0))
             #BUTTONS -> JUST FOR TESTING
             #pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(99, 34, 80, 59), 3)
             #MOUSE           
