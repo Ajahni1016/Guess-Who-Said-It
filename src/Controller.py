@@ -79,7 +79,8 @@ class Controller:
             pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(450, 500, 100, 100), 3)
             #SCREEN WORDS
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("QUOTES", True, (245,231,20))
+            #ptext.draw(INSERT TEXT, color = (12,24,45),fontsize=60,fontname='assets/sunshine.ttf')
+            #text = myfont.render("QUOTES", True, (245,231,20))
             self.screen.blit(text, (439, 300))
             #MOUSE
             pygame.mouse.set_visible(True)
@@ -102,13 +103,91 @@ class Controller:
         img_file = random.choice(choices)
         self.gameBG = pygame.transform.smoothscale(pygame.image.load(img_file).convert_alpha(), (self.width,self.height))
         self.screen.blit(self.gameBG, (0, 0))
-                #SCREEN WORDS
-        myfont = pygame.font.Font('assets/sunshine.ttf', 40)
-        ran=random.randint(0, self.AllQuotes.quoteNum)
+        #SCREEN WORDS
+        myfont = pygame.font.Font('assets/sunshine.ttf', 80)
+        ran=random.randint(0, (self.AllQuotes.quoteNum - 2))
+        print(ran)
         text = myfont.render((self.AllQuotes.quoteDict[ran][0]), True, (0,0,0))
-        ptext.draw(self.AllQuotes.quoteDict[ran][0],(340,90),width = 581, color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-        #textwrap.wrap(text, 70, expand_tabs=False,translate = False)
-        #self.screen.blit(text, (331, 84))
+        ptext.draw(self.AllQuotes.quoteDict[ran][0],(340,90),width = 581,align="center", color = (12,24,45),fontsize=60,fontname='assets/sunshine.ttf')
+
+        #BUTTON WORDS
+        answer = self.AllQuotes.quoteDict[ran][1]
+
+        val1 = random.randint(1, self.AllQuotes.quoteNum)
+        val2 = random.randint(1, self.AllQuotes.quoteNum)
+        val3 = random.randint(1, self.AllQuotes.quoteNum)
+
+        print("Fake1: ",val1)
+        print("Fake2: ",val2)
+        print("Fake3: ",val3)
+
+        fake1 = self.AllQuotes.quoteDict[val1][1]
+        fake2 = self.AllQuotes.quoteDict[val2][1]
+        fake3 = self.AllQuotes.quoteDict[val3][1]
+
+        if(fake1 == answer):
+            val1 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake1: ",val1)
+            fake1 = self.AllQuotes.quoteDict[val1][1]
+        if(fake1 == answer):
+            val1 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake1: ",val1)
+            fake1 = self.AllQuotes.quoteDict[val1][1]
+        if(fake1 == answer):
+            val1 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake1: ",val1)
+            fake1 = self.AllQuotes.quoteDict[val1][1]
+
+        if(fake2 ==answer or fake2==fake1):
+            val2 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake2: ",val2)
+            fake2 = self.AllQuotes.quoteDict[val2][1]
+        if(fake2 ==answer or fake2==fake1):
+            val2 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake2: ",val2)
+            fake2 = self.AllQuotes.quoteDict[val2][1]
+        if(fake2 ==answer or fake2==fake1):
+            val2 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake2: ",val2)
+            fake2 = self.AllQuotes.quoteDict[val2][1]
+
+        if(fake3 == answer or fake3==fake2 or fake3==fake1):
+            val3 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake3: ",val3)
+            fake3 = self.AllQuotes.quoteDict[val3][1]
+        if(fake3 == answer or fake3==fake2 or fake3==fake1):
+            val3 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake3: ",val3)
+            fake3 = self.AllQuotes.quoteDict[val3][1]
+        if(fake3 == answer or fake3==fake2 or fake3==fake1):
+            val3 = random.randint(1, self.AllQuotes.quoteNum)
+            print("Fake3: ",val3)
+            fake3 = self.AllQuotes.quoteDict[val3][1]
+
+        answerlocation=random.randint(1, 4)
+
+        if(answerlocation==1):
+            ptext.draw(answer,(210,426),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake1,(210,557),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake2,(663,439),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake3,(663,564),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+        elif(answerlocation==2):
+            ptext.draw(answer,(210,557),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake1,(210,426),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake2,(663,439),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake3,(663,564),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+        elif(answerlocation==3):
+            ptext.draw(answer,(663,439),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake1,(210,426),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake2,(210,557),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake3,(663,564),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+        elif(answerlocation==4):
+            ptext.draw(answer,(663,564),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake1,(210,426),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake2,(210,557),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+            ptext.draw(fake3,(663,439),width = 225,lineheight=.7 ,color = (12,24,45),align="center",fontsize=50,fontname='assets/sunshine.ttf')
+
+
         while self.state == "GAME":
             #BUTTONS -> JUST FOR TESTING
             #pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(99, 34, 80, 59), 3)
