@@ -22,9 +22,9 @@ class Person:
 
     def getName(self):
         return self.name
-    
+
     def getYear(self):
         return self.year
-    
+
     def getQuote(self):
         return self.quote

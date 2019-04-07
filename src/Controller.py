@@ -7,6 +7,8 @@ import json
 #Created
 from src import TextInput
 from src import Person
+from src import ptext
+from src import QuoteInfo
 
 class Controller:
     def __init__(self, width=1080, height=720):
@@ -19,6 +21,10 @@ class Controller:
         pygame.font.init()
         #INITIAL STATE
         self.state = "MENU"
+        self.AllQuotes = QuoteInfo.QuoteInfo()
+        self.AllQuotes.countQuotes()
+        self.AllQuotes.makeDicts()
+
 
     def mainLoop(self):
         """Controls the state of the game"""
@@ -44,7 +50,7 @@ class Controller:
             #BACKGROUND
             self.menuBG = pygame.transform.smoothscale(pygame.image.load('assets/MainMenu.png').convert_alpha(), (self.width,self.height))
             self.screen.blit(self.menuBG, (0, 0))
-            #MOUSE           
+            #MOUSE
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -63,7 +69,7 @@ class Controller:
                         self.state = "INSERT"
                         self.mainLoop()
             pygame.display.flip()
-    
+
     def listLoop(self):
         """This is the List Loop of the Game"""
         while self.state == "LIST":
@@ -75,7 +81,7 @@ class Controller:
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
             text = myfont.render("QUOTES", True, (245,231,20))
             self.screen.blit(text, (439, 300))
-            #MOUSE           
+            #MOUSE
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -88,7 +94,7 @@ class Controller:
                         self.state = "MENU"
                         self.mainLoop()
             pygame.display.flip()
-            
+
     def gameLoop(self):
         """This is the Game Loop of the Game"""
         #BACKGROUND
@@ -96,10 +102,17 @@ class Controller:
         img_file = random.choice(choices)
         self.gameBG = pygame.transform.smoothscale(pygame.image.load(img_file).convert_alpha(), (self.width,self.height))
         self.screen.blit(self.gameBG, (0, 0))
+                #SCREEN WORDS
+        myfont = pygame.font.Font('assets/sunshine.ttf', 40)
+        ran=random.randint(0, self.AllQuotes.quoteNum)
+        text = myfont.render((self.AllQuotes.quoteDict[ran][0]), True, (0,0,0))
+        ptext.draw(self.AllQuotes.quoteDict[ran][0],(340,90),width = 581, color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+        #textwrap.wrap(text, 70, expand_tabs=False,translate = False)
+        #self.screen.blit(text, (331, 84))
         while self.state == "GAME":
             #BUTTONS -> JUST FOR TESTING
             #pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(99, 34, 80, 59), 3)
-            #MOUSE           
+            #MOUSE
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -114,15 +127,15 @@ class Controller:
             pygame.display.flip()
 
     def insertLoop(self):
-        """This is the Insert Loop of the Game""" 
+        """This is the Insert Loop of the Game"""
         #CREATED A PERSON OBJECT
         self.person = Person.Person()
-        
+
         while self.state == "INSERT":
             #BACKGROUND
             self.insertBG = pygame.transform.smoothscale(pygame.image.load('assets/Insert.png').convert_alpha(), (self.width,self.height))
             self.screen.blit(self.insertBG, (0, 0))
-            #MOUSE           
+            #MOUSE
             pygame.mouse.set_visible(True)
             events = pygame.event.get()
             for event in events:
@@ -145,11 +158,11 @@ class Controller:
                         self.state = "TEXTQ"
                         self.mainLoop()
             pygame.display.flip()
-            
+
     def text_nLoop(self):
         """This is the Text Loop of the Game"""
         clock = pygame.time.Clock()
-        textinput = TextInput.TextInput()      
+        textinput = TextInput.TextInput()
         while self.state == "TEXTN":
             #BACKGROUND
             self.screen.fill((255,255,255))
