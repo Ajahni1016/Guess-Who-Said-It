@@ -1,0 +1,31 @@
+#EXAMPLES FOR THINGS <Written In Python Comment Mode> :
+
+'''
+ROTATED TEXT
+myfont = pygame.font.SysFont('Arial', 40,  True, True)
+message = myfont.render("Guess Who Said It", True, (245,231,20))
+message = pygame.transform.rotate(message, -20)
+self.screen.blit(message, (136,123))
+
+CUSTOMIZED FONT
+font = pygame.font.Font('assets/BRLNSDB.TTF', 40)
+text = font.render("PLAY", True, (245,231,20))
+self.screen.blit(text, (439, 300))
+'''
+
+'''
+DRAW RECT                       color            x, y, width, height, border
+pygame.draw.rect(self.screen, (255, 0, 0), pygame.Rect(148, 256, 100, 100), 0)
+pygame.draw.rect(self.screen, (0, 255, 0), pygame.Rect(439, 259, 100, 100), 3)
+pygame.draw.rect(self.screen, (0, 0, 255), pygame.Rect(742, 253, 100, 100), 6)
+'''
+
+'''
+BACKGROUND IMAGES
+self.gameBG = pygame.transform.smoothscale(pygame.image.load('assets/bg.<type>').convert_alpha(), (width,height))
+self.screen.blit(self.menuBG, (0, 0))
+'''
+
+'''
+
+'''
