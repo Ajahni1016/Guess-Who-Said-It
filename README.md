@@ -1,10 +1,8 @@
 # Guess Who Said It
-## Spring Semester, 2019
+## April 2019
 ### A CoRE Hacks 2019 project
 
 [https://github.com/Ajahni1016/Guess-Who-Said-It](#)
-
-[https://drive.google.com/open?id=1Aolg3oW1FIHdKJbbfPvv8dVzW0ORftMWM3I9t6bvXCA](#)
 
 ### _Team Names_:
 #### Ajahni Lee
