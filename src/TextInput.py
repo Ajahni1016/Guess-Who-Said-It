@@ -19,9 +19,9 @@ class TextInput:
             self,
             initial_string="",
             font_family="",
-            font_size=35,
+            font_size=100,
             antialias=True,
-            text_color=(255, 255, 0),
+            text_color=(0, 0, 0),
             cursor_color=(0, 0, 1),
             repeat_keys_initial_ms=400,
             repeat_keys_interval_ms=35):
