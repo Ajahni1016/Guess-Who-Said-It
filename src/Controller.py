@@ -16,7 +16,7 @@ class Controller:
         self.width = width
         self.height = height
         self.screen = pygame.display.set_mode((self.width, self.height))
-        fo = open("quotes.json","r")
+        fo = open("assets/QuoteList.txt","r")
         arr = fo.readlines()
         fo.close()
         length=int(len(arr)/3)
@@ -119,8 +119,8 @@ class Controller:
             self.screen.fill((255,255,255))
             #SCREEN WORDS
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("QUOTE", True, (0,0,0))
-            self.screen.blit(text, (439, 300))
+            text = myfont.render("Insert Quote", True, (0,0,0))
+            self.screen.blit(text, (368, self.height/2))
             #MOUSE
             pygame.mouse.set_visible(True)
             events = pygame.event.get()
@@ -129,7 +129,7 @@ class Controller:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if(event.key == pygame.K_RETURN):
-                        fo = open("quotes.json","a")
+                        fo = open("assets/QuoteList.txt","a")
                         fo.write(textinput.get_text())
                         fo.close()
                         self.state = "INSERT"
@@ -307,28 +307,28 @@ class Controller:
             #print(self.AllQuotes.pagelist[0][0][0])
             curr_page = 4
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][0],(140,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][0][1],(180,115),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][0][1],(140,115),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][0],(140,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][1],(140,360),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,360),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][0],(140,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][2][2],(440,525),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][2][2],(440,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][0],(561,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][1],(561,115),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][2],(861,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][4][0],(561,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][4][1],(561,320),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][4][1],(561,360),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,360),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][0],(561,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][5][2],(861,525),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][5][2],(861,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -356,17 +356,17 @@ class Controller:
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
             #text = myfont.render((self.AllQuotes.quoteDict[0][0]), True, (0,0,0))
             #print(self.AllQuotes.pagelist[0][0][0])
-            curr_page = 6
+            curr_page = 5
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][0],(140,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][1],(140,155),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,155),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][0],(140,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][1],(140,320),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][0],(140,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][2],(440,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][0],(561,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
@@ -378,7 +378,7 @@ class Controller:
             ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][0],(561,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][2],(861,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
@@ -409,16 +409,16 @@ class Controller:
             #print(self.AllQuotes.pagelist[0][0][0])
             curr_page = 6
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][0],(140,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][0][1],(140,115),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][0][1],(140,155),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,155),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][0],(140,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][1],(140,320),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][0],(140,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][2][2],(440,525),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][2][2],(440,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][0],(561,23),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][1],(561,115),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
@@ -429,8 +429,8 @@ class Controller:
             ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][0],(561,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][5][2],(861,525),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,565),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][5][2],(861,565),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             pygame.mouse.set_visible(True)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -515,8 +515,8 @@ class Controller:
             ptext.draw(self.AllQuotes.pagelist[curr_page][0][2],(440,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][1][0],(140,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][1][1],(140,320),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][1][1],(140,360),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][1][2],(440,360),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][0],(140,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][2][1],(140,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
@@ -527,8 +527,8 @@ class Controller:
             ptext.draw(self.AllQuotes.pagelist[curr_page][3][2],(861,115),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][4][0],(561,228),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][4][1],(561,320),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
-            ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,320),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][4][1],(561,360),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
+            ptext.draw(self.AllQuotes.pagelist[curr_page][4][2],(861,360),width = 400,align="right", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
 
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][0],(561,433),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
             ptext.draw(self.AllQuotes.pagelist[curr_page][5][1],(561,525),width = 400,align="left", color = (12,24,45),fontsize=40,fontname='assets/sunshine.ttf')
@@ -869,6 +869,12 @@ class Controller:
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=560 and temp[1]<=644)):
                             self.state = "GAMEOVER"
                             self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=430 and temp[1]<=518)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=560 and temp[1]<=644)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
                     if(answerlocation == 2):
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=430 and temp[1]<=518)):
                             self.state = "GAMEOVER"
@@ -876,14 +882,23 @@ class Controller:
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=560 and temp[1]<=644)):
                             self.state = "WIN"
                             self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=430 and temp[1]<=518)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=560 and temp[1]<=644)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
                     if(answerlocation == 3):
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=430 and temp[1]<=518)):
                             self.state = "GAMEOVER"
                             self.mainLoop()
-                        if((temp[0]>=623 and temp[0]<=416) and (temp[1]>=430 and temp[1]<=518)):
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=430 and temp[1]<=518)):
                             self.state = "WIN"
                             self.mainLoop()
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=560 and temp[1]<=644)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=560 and temp[1]<=644)):
                             self.state = "GAMEOVER"
                             self.mainLoop()
                     if(answerlocation == 4):
@@ -892,6 +907,12 @@ class Controller:
                             self.mainLoop()
                         if((temp[0]>=210 and temp[0]<=416) and (temp[1]>=560 and temp[1]<=644)):
                             self.state = "GAMEOVER"
+                            self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=430 and temp[1]<=518)):
+                            self.state = "GAMEOVER"
+                            self.mainLoop()
+                        if((temp[0]>=654 and temp[0]<=869) and (temp[1]>=560 and temp[1]<=644)):
+                            self.state = "WIN"
                             self.mainLoop()
 
 
@@ -905,7 +926,7 @@ class Controller:
             self.screen.fill((255,255,255))
             #SCREEN WORDS
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("YEAR", True, (0,0,0))
+            text = myfont.render("Insert Year of Quote", True, (0,0,0))
             self.screen.blit(text, (439, 300))
             #MOUSE
             pygame.mouse.set_visible(True)
@@ -915,9 +936,13 @@ class Controller:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if(event.key == pygame.K_RETURN):
-                        fo = open("quotes.json","a")
+                        fo = open("assets/QuoteList.txt","a")
                         fo.write('\n'+textinput.get_text()+'\n')
                         fo.close()
+                        self.AllQuotes = QuoteInfo.QuoteInfo()
+                        self.AllQuotes.countQuotes()
+                        self.AllQuotes.makeDicts()
+                        self.AllQuotes.makePages()
                         self.state = "INSERT"
                         self.mainLoop()
             #print(events)
@@ -972,7 +997,7 @@ class Controller:
             self.screen.fill((255,255,255))
             #SCREEN WORDS
             myfont = pygame.font.Font('assets/BRLNSDB.TTF', 40)
-            text = myfont.render("TEXTN", True, (0,0,0))
+            text = myfont.render("Insert Name of Person", True, (0,0,0))
             self.screen.blit(text, (439, 300))
             #MOUSE
             pygame.mouse.set_visible(True)
@@ -982,7 +1007,8 @@ class Controller:
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if(event.key == pygame.K_RETURN):
-                        fo = open("quotes.json","w")
+                        fo = open("assets/QuoteList.txt","a")
+                        fo.write("\n")
                         fo.write(textinput.get_text())
                         fo.close()
                         self.state = "INSERT"
